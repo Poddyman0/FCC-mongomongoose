@@ -18,7 +18,7 @@ const router = express.Router();
 
 const enableCORS = function (req, res, next) {
   if (!process.env.DISABLE_XORIGIN) {
-    const allowedOrigins = ["https://www.freecodecamp.org"];
+    const allowedOrigins = ["*"];
     const origin = req.headers.origin;
     if (!process.env.XORIGIN_RESTRICT || allowedOrigins.indexOf(origin) > -1) {
       console.log(req.method);
@@ -32,6 +32,9 @@ const enableCORS = function (req, res, next) {
   }
   next();
 };
+
+
+
 
 // global setting for safety timeouts to handle possible
 // wrong callbacks that will never be called
