@@ -7,7 +7,7 @@ const express = require("express");
 const app = express();
 let mongoose;
 try {
-  mongoose = require("mongoose");
+  ose = require("mongoose");
 } catch (e) {
   console.log(e);
 }

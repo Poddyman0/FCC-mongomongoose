@@ -3,16 +3,14 @@ const mongoose = require('mongoose');
 const {Schema, model} = mongoose;
 
 //run npm start to test.
-
-mongoose.connect(process.env.MONGO_URI, 
-  { 
-    useNewUrlParser: true,
-    useUnifiedTopology: true 
-  }, 
-  () => {
-    console.log("DB connection successfull")
-  }
-);
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log('Successfully connected to the MongoDB database');
+}).catch((error) => {
+  console.error('Error connecting to the MongoDB database:', error.message);
+});
 
 /*
 Create a person schema called personSchema with the following shape:
@@ -134,6 +132,15 @@ const queryChain = (done) => {
     done(null, data);
   })
 };
+
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  next();
+})
 
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
